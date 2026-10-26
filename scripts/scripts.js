@@ -12,6 +12,38 @@ import {
   buildBlock,
 } from './aem.js';
 
+/**
+ * Moves attributes from one element to another.
+ * @param {Element} from The element to copy attributes from
+ * @param {Element} to The element to copy attributes to
+ * @param {string[]} attributes The attributes to move
+ */
+export function moveAttributes(from, to, attributes) {
+  const attributesToMove = attributes || [...from.attributes].map(({ nodeName }) => nodeName);
+  attributesToMove.forEach((attr) => {
+    const value = from.getAttribute(attr);
+    if (value) {
+      to?.setAttribute(attr, value);
+      from.removeAttribute(attr);
+    }
+  });
+}
+
+/**
+ * Moves Universal Editor instrumentation attributes to another element.
+ * @param {Element} from The element to copy attributes from
+ * @param {Element} to The element to copy attributes to
+ */
+export function moveInstrumentation(from, to) {
+  moveAttributes(
+    from,
+    to,
+    [...from.attributes]
+      .map(({ nodeName }) => nodeName)
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
+  );
+}
+
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   const innerTT = window.trustedTypes.createPolicy('tt-inner', {
     createHTML: (s) => s, // avoid stack overflow
@@ -128,7 +160,7 @@ function decoratePlainLinks(main) {
  * Decorates formatted links to style them as buttons.
  * @param {HTMLElement} main The main container element
  */
-function decorateButtons(main) {
+export function decorateButtons(main) {
   main.querySelectorAll('p a[href]').forEach((a) => {
     a.title = a.title || a.textContent;
     const p = a.closest('p');
@@ -226,7 +258,8 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  import('./consent-check.js');
+  // eslint-disable-next-line import/no-cycle
+  window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
