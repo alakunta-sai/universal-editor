@@ -1,0 +1,144 @@
+{
+  "definitions": [
+    {
+      "title": "Contact Form",
+      "id": "contact-form",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Contact Form",
+              "filter": "contact-form"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Form Field",
+      "id": "contact-form-field",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Form Field",
+              "model": "contact-form-field"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Submit Button Label",
+      "id": "contact-form-submit",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Submit Button Label",
+              "model": "contact-form-submit"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "contact-form-field",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Field Label",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "type",
+          "label": "Input Type",
+          "value": "text",
+          "options": [
+            {
+              "name": "Text",
+              "value": "text"
+            },
+            {
+              "name": "Email",
+              "value": "email"
+            },
+            {
+              "name": "Telephone",
+              "value": "tel"
+            },
+            {
+              "name": "URL",
+              "value": "url"
+            },
+            {
+              "name": "Number",
+              "value": "number"
+            },
+            {
+              "name": "Text Area",
+              "value": "textarea"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "name": "placeholder",
+          "label": "Placeholder",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "required",
+          "label": "Required",
+          "value": "optional",
+          "options": [
+            {
+              "name": "Optional",
+              "value": "optional"
+            },
+            {
+              "name": "Required",
+              "value": "required"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact-form-submit",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Row Type",
+          "value": "Submit Label",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "submitLabel",
+          "label": "Button Label",
+          "value": "Send Message",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "contact-form",
+      "components": [
+        "contact-form-field",
+        "contact-form-submit"
+      ]
+    }
+  ]
+}

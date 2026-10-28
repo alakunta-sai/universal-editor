@@ -180,6 +180,90 @@
     ]
   },
   {
+    "id": "contact-form-field",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Field Label",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "type",
+        "label": "Input Type",
+        "value": "text",
+        "options": [
+          {
+            "name": "Text",
+            "value": "text"
+          },
+          {
+            "name": "Email",
+            "value": "email"
+          },
+          {
+            "name": "Telephone",
+            "value": "tel"
+          },
+          {
+            "name": "URL",
+            "value": "url"
+          },
+          {
+            "name": "Number",
+            "value": "number"
+          },
+          {
+            "name": "Text Area",
+            "value": "textarea"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "placeholder",
+        "label": "Placeholder",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "required",
+        "label": "Required",
+        "value": "optional",
+        "options": [
+          {
+            "name": "Optional",
+            "value": "optional"
+          },
+          {
+            "name": "Required",
+            "value": "required"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "contact-form-submit",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Row Type",
+        "value": "Submit Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "submitLabel",
+        "label": "Button Label",
+        "value": "Send Message",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
@@ -211,6 +295,23 @@
         "name": "text",
         "value": "",
         "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "stat",
+    "fields": [
+      {
+        "component": "text",
+        "name": "value",
+        "label": "Value",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
         "valueType": "string"
       }
     ]

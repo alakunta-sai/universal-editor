@@ -49,6 +49,8 @@
         "title",
         "hero",
         "cards",
+        "contact-form",
+        "stats",
         "columns",
         "fragment"
       ]
