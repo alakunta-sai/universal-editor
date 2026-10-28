@@ -49,6 +49,17 @@
   max-width: 540px;
 }
 
+.hero p.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero p.button-wrapper br {
+  display: none;
+}
+
 .hero picture {
   position: absolute;
   z-index: 0;

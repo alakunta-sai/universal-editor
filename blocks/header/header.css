@@ -299,6 +299,9 @@ header nav .nav-tools a.button:any-link:focus-visible {
   header nav .nav-sections ul > li {
     position: relative;
     flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   header nav .nav-sections ul > li > a:any-link {
