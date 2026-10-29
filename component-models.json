@@ -138,6 +138,37 @@
             "value": "highlight"
           }
         ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "id",
+        "label": "Section ID",
+        "required": false,
+        "placeholder": "e.g., my-section",
+        "description": "The section will be linkable via this ID."
+      },
+      {
+        "component": "container",
+        "name": "dataAttributes",
+        "label": "Data Attributes",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "key",
+            "label": "Attribute name",
+            "required": true,
+            "valueType": "string",
+            "description": "Enter the name without the data- prefix."
+          },
+          {
+            "component": "text",
+            "name": "value",
+            "label": "Value",
+            "valueType": "string"
+          }
+        ]
       }
     ]
   },
