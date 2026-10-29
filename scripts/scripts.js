@@ -58,8 +58,14 @@ export function decorateSectionDataAttributes(main) {
     });
     if (!attributesRow) return;
 
-    const values = [...attributesRow.children[1].querySelectorAll('p')]
-      .map((paragraph) => paragraph.textContent);
+    const valueCell = attributesRow.children[1];
+    const paragraphs = [...valueCell.querySelectorAll('p')];
+    const values = paragraphs.length
+      ? paragraphs.map((paragraph) => paragraph.textContent)
+      : [...valueCell.querySelectorAll('*')]
+        .filter((element) => element.children.length === 0)
+        .map((element) => element.textContent)
+        .filter((value) => value.trim());
     const rows = document.createDocumentFragment();
     for (let i = 0; i + 1 < values.length; i += 2) {
       const key = values[i].trim().replace(/^data-/i, '');
