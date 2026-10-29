@@ -44,6 +44,39 @@ export function moveInstrumentation(from, to) {
   );
 }
 
+/**
+ * Expands the section's repeatable key/value data attributes into metadata rows.
+ * @param {Element} main The container element
+ */
+export function decorateSectionDataAttributes(main) {
+  main.querySelectorAll('div.section-metadata').forEach((metadata) => {
+    const attributesRow = [...metadata.children].find((row) => {
+      const name = row.children[0]?.textContent
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '');
+      return name === 'dataattributes' && row.children[1];
+    });
+    if (!attributesRow) return;
+
+    const values = [...attributesRow.children[1].querySelectorAll('p')]
+      .map((paragraph) => paragraph.textContent);
+    const rows = document.createDocumentFragment();
+    for (let i = 0; i + 1 < values.length; i += 2) {
+      const key = values[i].trim().replace(/^data-/i, '');
+      if (key) {
+        const row = document.createElement('div');
+        const name = document.createElement('div');
+        const value = document.createElement('div');
+        name.textContent = key;
+        value.textContent = values[i + 1];
+        row.append(name, value);
+        rows.append(row);
+      }
+    }
+    attributesRow.replaceWith(rows);
+  });
+}
+
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   const innerTT = window.trustedTypes.createPolicy('tt-inner', {
     createHTML: (s) => s, // avoid stack overflow
@@ -203,6 +236,7 @@ export function decorateButtons(main) {
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
+  decorateSectionDataAttributes(main);
   decorateSections(main);
   decorateBlocks(main);
   decoratePlainLinks(main);
